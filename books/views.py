@@ -5,13 +5,13 @@ from books.serializer import (
     BookSerializer,
     BookListSerializer,
 )
-from books.permissions import IsAdminOrIfAnonReadOnly
+from books.permissions import IsAdminOrReadOnly
 
 
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = (IsAdminOrIfAnonReadOnly,)
+    permission_classes = (IsAdminOrReadOnly,)
 
     def get_serializer_class(self):
         if self.action in (
